@@ -77,6 +77,11 @@ const location = useLocation();
     navigate(`/Jobs/jobDetails?jobId=${jobId}`);
   };
 
+  const handleAddReviewClick = (freelancerId) => {
+    navigate(`/Client/AddReview?${freelancerId}`);
+    };
+  
+
   const filteredFreelancers = search
   ? freelancerList.filter((f) => 
       f.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -160,7 +165,15 @@ const location = useLocation();
                 <div className="mt-auto d-flex gap-2">
                   <button className="btn btn-outline-primary btn-sm w-50" onClick={() => handleContactClick(freelancer._id)}>Contact</button>
                   <button className="btn btn-outline-success btn-sm w-50" onClick={() => handleFreelancerInvite(freelancer._id)}>Invite to Bid</button>
+                  <button
+                    className="btn btn-outline-warning btn-sm w-50"
+                    onClick={() => handleAddReviewClick(freelancer._id)}
+                  >
+                    Add Review
+                  </button>
                 </div>
+                
+                 
               </div>
             </div>
           </div>

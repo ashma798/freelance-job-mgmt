@@ -29,24 +29,29 @@ const ClientProfile = () => {
       </div>
     );
   }
-
+  const cloudinaryImageUrl = clientData.image 
+  ? `https://res.cloudinary.com/dg6a6mitp/image/upload/v1746047520/${clientData.image}`
+  : '/path/to/default-image.jpg';
   return (
     <div className="bg-gray-100 min-h-screen flex items-center justify-center p-6">
-      <div className="bg-white rounded-2xl shadow-lg max-w-4xl w-full p-8">
-        <div className="flex flex-col md:flex-row items-center md:items-start">
+      <div className="bg-white rounded-2xl shadow-lg max-w-4xl w-full -8 mx-5">
+        <div className="flex flex-col md:flex-row items-center md:items-start min-h-[400px]">
           
           {/* Profile Picture */}
-          <div className="flex-shrink-0 mb-6 md:mb-0 md:mr-8">
-            <img
-              className="w-40 h-40 rounded-full object-cover border-4 border-indigo-500"
-              src={`http://localhost:5000/uploads/${clientData.image}`} 
-              alt="Profile"
-            />
-          </div>
-
+          <div className="flex flex-col items-center mb-6 md:mb-0 md:mr-8 ml-6">
+  <img
+    className="w-40 h-40 rounded-full object-cover border-4 border-indigo-500 mt-5"
+    src={cloudinaryImageUrl}
+    alt="Profile"
+  />
+  <div className="mt-4 text-center">
+    <h2 className="text-3xl font-bold text-gray-800">{clientData.name}</h2>
+    <p className="text-indigo-600 text-lg">{clientData.email}</p>
+  </div>
+</div>
           {/* Profile Details */}
-          <div className="flex-1">
-            <h2 className="text-3xl font-bold text-gray-800 mb-2">{clientData.name}</h2>
+          <div className="flex-1 mb-6 mx-6 mt-5">
+            <h2 className="text-3xl font-bold text-gray-800 mb-2"></h2>
             <p className="text-indigo-600 text-lg mb-4">{clientData.companyName || 'Company Not Provided'}</p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-700">

@@ -29,7 +29,7 @@ const Register = () => {
     e.preventDefault();
     const phoneRegex = /^\d{10}$/;
     if (!phoneRegex.test(phoneno)) {
-      alert("Please enter a valid 10-digit phone number.");
+      toast.error("Please enter a valid 10-digit phone number.");
       return;
     }
 
@@ -66,10 +66,11 @@ const Register = () => {
         toast.success('Registration successful!');
         navigate("/authentication/login", { replace: true });
       } else {
+        toast.error("Registration failed. Please try again.");
         console.error("Unexpected response:", response.data);
       }
     } catch (error) {
-      toast.error('Registration failed!');
+      toast.error('Registration failed! Something went wrong.');
       console.error("Registration failed:", error);
     }
   };
@@ -82,13 +83,13 @@ const Register = () => {
         </h2>
 
         <div className="w-full text-center mb-6">
-  <span
-    onClick={() => navigate("/authentication/login")}
-    className="text-blue-600 hover:text-blue-800 cursor-pointer underline transition-all"
-  >
-    Already Registered? Login
-  </span>
-</div>
+          <span
+            onClick={() => navigate("/authentication/login")}
+            className="text-blue-600 hover:text-blue-800 cursor-pointer underline transition-all"
+          >
+            Already Registered? Login
+          </span>
+        </div>
 
         <form onSubmit={handleRegister} className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <input
@@ -228,12 +229,12 @@ const Register = () => {
                 value={website}
                 onChange={(e) => setWebsite(e.target.value)}
               />
-             <textarea
-  className="input-classy md:col-span-2 resize-none h-28"
-  placeholder="Bio"
-  value={about}
-  onChange={(e) => setAbout(e.target.value)}
-></textarea>
+              <textarea
+                className="input-classy md:col-span-2 resize-none h-28"
+                placeholder="Bio"
+                value={about}
+                onChange={(e) => setAbout(e.target.value)}
+              />
             </>
           )}
 

@@ -3,7 +3,7 @@ const router = express.Router();
 const { verifyToken, checkRole } = require("../Middlewares/auth");
 const {deleteJob,deleteUser,viewReview} = require("../Controllers/adminController");
 const {
-    sendMessage,getLastPostedJobIdviewClient,viewJob,jobProfile,clientProfile,getBidDetails} = require("../Controllers/userController");
+    addReview,sendMessage,getLastPostedJobIdviewClient,viewJob,jobProfile,clientProfile,getBidDetails} = require("../Controllers/userController");
 const {getFreelancerCount,getJobCount,getOpenProjectCount} = require('../Controllers/dashboardController')
 const { myProposal,viewProposals,addProposal,freelancerProfile,inviteFreelancer,bid} = require("../Controllers/freelancerController");
 const { createPayment,initialPaymentRelease,markAsCompleted} = require("../Controllers/paymentController");
@@ -12,7 +12,7 @@ const Freelancer = require("../Models/freelancerProfileModel");
 
 /*ADMIN ROUTES*/
 
-router.get('/viewClients',verifyToken,checkRole(['admin','freelancer']),viewClients);
+router.get('/viewClients',viewClients);
 router.delete('/deleteUser',verifyToken,checkRole('admin'),deleteUser);
 router.delete('/deleteJob',verifyToken,checkRole(['admin', 'client']),deleteJob);
 router.get('/viewReview',verifyToken,checkRole(['admin','client','freelancer']),viewReview);
@@ -22,8 +22,7 @@ router.get('/viewReview',verifyToken,checkRole(['admin','client','freelancer']),
 
 /*client routes*/
 router.post('/addJob',verifyToken,checkRole('client'),addJob);
-router.put('/updateJob',verifyToken,checkRole('client'),updateJob);
-router.post('/addReview',verifyToken,checkRole('client'),addReview);
+router.post('/addReview',verifyToken,checkRole(['client']),addReview);
 router.get('/viewProposals',verifyToken,checkRole('client'),viewProposals);
 router.post('/getLastPostedJobId',verifyToken,checkRole('client'),getLastPostedJobId);
 router.post('/inviteFreelancer',verifyToken,checkRole('client'),inviteFreelancer);
@@ -46,6 +45,7 @@ router.post('/initialPaymentRelease',verifyToken,checkRole(['client','freelancer
 
 
 /*FREELANCER ROUTES*/
+router.get('/getFreelancers',getFreelancers);
 router.get('/getFreelancers',verifyToken,checkRole(['admin','client','freelancer']),getFreelancers);
 router.get('/viewJob',verifyToken,checkRole(['admin','client','freelancer']),viewJob);
 router.get('/freelancerProfile/:freelancerId',verifyToken,checkRole(['client','freelancer']),freelancerProfile);

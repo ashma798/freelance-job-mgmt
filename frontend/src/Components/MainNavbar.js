@@ -9,6 +9,8 @@ const MainNavbar = () => {
   if (role === 'freelancer') return <FreelancerNavbar />;
   if (role === 'admin') return <AdminNavbar />;
   if ((role === 'client') || (!role)) return <ClientNavbar />;
+
+  return <ClientNavbar />;
   
 };
 

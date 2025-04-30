@@ -9,11 +9,13 @@ import { useEffect, useState } from "react";
 
 const Layout = ({ children }) => {
   const [role, setRole] = useState(null);
+  const [loading, setLoading] = useState(true);
   const location = useLocation(); 
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("@user"));
     setRole(user?.role);
+    setLoading(false);
   }, [location]); 
 
   const renderNavbar = () => {
