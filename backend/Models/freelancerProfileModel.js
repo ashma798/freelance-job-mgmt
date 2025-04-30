@@ -9,7 +9,7 @@ const freelancerSchema = new  mongoose.Schema({
     },
     
     portfolio_links:{
-        type:[String]
+        type:String
        
     },
     hourly_rate:{
@@ -26,7 +26,13 @@ const freelancerSchema = new  mongoose.Schema({
         type:[String],
         required:true
 
-    } 
+    } ,
+    bio:{
+        type:String,
+        required:true
+        
+    },
+
     
 },
 {
@@ -34,7 +40,7 @@ const freelancerSchema = new  mongoose.Schema({
 });
 
     
-const Freelancer = new mongoose.model("freelancer_profile",freelancerSchema);
+const Freelancer = new mongoose.model("freelancerprofile",freelancerSchema);
 module.exports = Freelancer;
 
 

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const paymentSchema = new mongoose.Schema({
     job_id: {
        type: mongoose.Schema.Types.ObjectId,
-        ref: "jobs",
+        ref: "Jobs",
          required: true 
         },
     client_id: {
@@ -10,11 +10,6 @@ const paymentSchema = new mongoose.Schema({
        ref: "users",
         required: true
        },
-    freelancer_id: { 
-      type: mongoose.Schema.Types.ObjectId,
-       ref: "users",
-        required: true 
-      },
     amount: { 
       type: Number, 
       required: true 
@@ -24,13 +19,21 @@ const paymentSchema = new mongoose.Schema({
        enum: ["pending", "paid", "refunded", "failed"],
         default: "pending" 
       },
-    method: { 
-      type: String 
+   
+    method: {
+      type: String
+    },
+    payment_intent_id: {  
+      type: String
+    },
+    transactionId: {  
+      type: String
     }
-  },
-  {
-    timeStamps:true
-});
+  }, {
+    timestamps: true
+  });
 
+  
     
-  module.exports = mongoose.model("payment", paymentSchema);
+  const payment = mongoose.model("payments", paymentSchema);
+  module.exports = payment;

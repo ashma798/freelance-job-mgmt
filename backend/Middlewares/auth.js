@@ -19,7 +19,7 @@ exports.verifyToken = (req,res,next)=>{
             });
         }
     }catch(err){
-        console.log("error in Middelware");
+        console.log("error in Middelware:",err);
         res.status(401).json({
             success:false,
             statusCode : 401,

@@ -13,11 +13,18 @@ const clientSchema = new  mongoose.Schema({
         required : false
 
     },
-    website:{
+    website:
+    {
+        type:String,
+        required : false
+
+    },
+    bio:{
         type:String,
          required : false
        
     }
+
   
     
 },
@@ -26,7 +33,7 @@ const clientSchema = new  mongoose.Schema({
 });
 
     
-const Client = new mongoose.model("client_profile",clientSchema);
+const Client = new mongoose.model("clientprofiles",clientSchema);
 module.exports = Client;
 
 

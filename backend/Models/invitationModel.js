@@ -1,13 +1,12 @@
-
 const mongoose = require('mongoose');
-const proposalSchema = new  mongoose.Schema({
-    freelancer_id:
+const invitationSchema = new  mongoose.Schema({
+    client_id:
     {
         type:mongoose.Schema.Types.ObjectId,
         ref:"users",
         required:true
     },
-    client_id:
+    freelancer_id:
     {
         type:mongoose.Schema.Types.ObjectId,
         ref:"users",
@@ -18,24 +17,16 @@ const proposalSchema = new  mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"jobs",
         required:true
-
     },
-    cover_letter:{
-        type: String
-       
-    },
-    proposed_budget:{
-        type:mongoose.Schema.Types.Decimal128,
-        required:true
-    },
-    
-    status:{
+    status:
+    {
         type:String,
-        enum:['pending','accepted','rejected'],
+        enum:['pending', 'accepted', 'declined'],
         default : 'pending',
-        required : true
+        required : false
+
     }
-  
+   
     
 },
 {
@@ -43,6 +34,19 @@ const proposalSchema = new  mongoose.Schema({
 });
 
     
-const proposal = new mongoose.model("proposals",proposalSchema);
-module.exports = proposal;
+const invitations = new mongoose.model("invitations",invitationSchema);
+module.exports = invitations;
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -2,26 +2,7 @@ const userModel = require('../Models/userModel');
 const jobModel = require('../Models/jobModel');
 const reviewModel = require('../Models/reviewModel');
 
-users =  async (req, res) => {
-    try {
-        const allUsers = await userModel.find({ role: { $in: ['Freelancer', 'Client'] } });
-        console.log("usr:",allUsers);
-
-        return res.status(200).json({
-            success: true,
-            statusCode: 200,
-            message: "Users retrieved successfully",
-            count: allUsers.length,
-            data: allUsers
-        });
-    } catch (err) {
-        return res.status(500).json({
-            success: false,
-            statusCode: 500,
-            message: "Failed to fetch users"
-        })
-    }
-},
+ 
  deleteUser = async (req, res) => {
   try {
     const { userId } = req.body;
@@ -130,13 +111,33 @@ deleteJob = async (req, res) => {
         message: "Failed to fetch review"
     })
 }
-}
+},
+viewClient = async (req, res) => {
+            try {
+                const allClient = await userModel.find({role: 'client'});
+    
+                return res.status(200).json({
+                    success: true,
+                    statusCode: 200,
+                    message: "all Client retrieved successfully",
+                    count: allClient.length,
+                    data: allClient
+                });
+            } catch (err) {
+                console.log("errro:",err);
+                return res.status(500).json({
+                    success: false,
+                    statusCode: 500,
+                    message: "Failed to fetch client"
+                })
+            }
+        };
 
 
 module.exports = {
-  users,
+    viewClient,
   deleteUser,
-  listJobs,
+  viewClient,
   deleteJob,
   viewReview
 };
