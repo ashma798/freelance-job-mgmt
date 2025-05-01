@@ -12,6 +12,7 @@
   "author": "Ashma",
   "license": "ISC",
   "dependencies": {
+    "@socket.io/component-emitter": "^3.1.2",
     "axios": "^1.8.4",
     "bcryptjs": "^3.0.2",
     "cloudinary": "^1.41.3",
